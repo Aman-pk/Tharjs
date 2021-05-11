@@ -1,31 +1,38 @@
-import "./App.css";
-import React, { useState} from "react";
-import Header from "./Components/Header";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./Components/Home";
-import Explore from "./Components/Explore";
-import Product from "./Components/Product";
-import Cart from "./Components/Cart";
+import './App.css';
+import React, { useState } from 'react';
+import Header from './Header/Header';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
+import Explore from './Explore';
+import Product from './Product';
+import Home from './Home';
+
+
+
+
 
 const App = () => {
-  const [color, setColor] = useState("red")
-  const [link, setLinkText] = useState("")
+  const [link, setLinkText] = useState(null);
 
-  return(
-    <Router>
-    <>
-    <Header bg={color} setText={(text) => setLinkText(text)}/>
-
-    {link && <h1> {link} clicked</h1>}
-    </>
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/explore" component={Explore} />
-      <Route path="/product" component={Product} />
-      <Route path="/cart" component={Cart} />
+    return (
+      <Router>
+        <div>
+          <Header  setText={(text) => setLinkText(text)} />
+        </div>
+        <Route exact path="/" component={Home} />
+        <Route path="/explore" component={Explore} />
+        <Route path="/Product" component={Product} />
+        <Switch>
+        <Route path="/product/:id" component={Product} />
+        </Switch>
+        
       
-    </Switch>
-    </Router>
-  );
-};
+      </Router>
+
+    );
+  }
+
+
+
+
+
 export default App;
